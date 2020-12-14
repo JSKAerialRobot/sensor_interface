@@ -11,10 +11,15 @@
   Follow https://wiki.up-community.org/Ubuntu to replace the kernel: `Install Ubuntu kernel 4.15.0 for UP from PPA on Ubuntu 16.04`
 
 #### Udev rules
-Change the access permision of /dev/spidev-*.* and /dev/i2c-* by following command
-```
-$ rosrun lepton_thermal_sensor create_udev_rules
-```
+- Nvidia Jetson TX2 with the default carrier board
+  Change the access permision of /dev/spidev-*.* and /dev/i2c-* by following command
+  ```
+  $ rosrun lepton_thermal_sensor create_udev_rules
+  ```
+
+- Intel UPboard
+
+  Follow the instruction of "Enable the HAT functionality from userspace" in the [official wiki](https://wiki.up-community.org/Ubuntu_18.04#Enable_the_HAT_functionality_from_userspace)
 
 ### Usage
 #### Default command:

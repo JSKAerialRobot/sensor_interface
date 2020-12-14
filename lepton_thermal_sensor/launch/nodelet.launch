@@ -3,6 +3,7 @@
   <arg name="spi_speed" default="1000000"/>
   <arg name="i2c_id" default="0"/>
   <arg name="camera" default="lepton_camera"/>
+  <arg name="camera_frame" default="lepton_camera"/>
   <arg name="temp_thresh" default="40"/>
 
   <group ns="$(arg camera)">
@@ -13,6 +14,7 @@
       <param name="spi_speed" value="$(arg spi_speed)"/>
       <param name="i2c_dev" value="/dev/i2c-$(arg i2c_id)"/>
       <param name="camera" value="$(arg camera)"/>
+      <param name="camera_frame" value="$(arg camera_frame)"/>
       <param name="temp_thresh" value="$(arg temp_thresh)"/>
       <param name="camera_info_url" value="file://$(find lepton_thermal_sensor)/config/lepton_camera_parameter.yaml"/>
       <rosparam file="$(find lepton_thermal_sensor)/config/lepton_temperature_model.yaml" command="load" />

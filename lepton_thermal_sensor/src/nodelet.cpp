@@ -61,14 +61,15 @@ namespace lepton_camera_driver
       sh_.reset(new SensorHandler(i2c_dev, spi_dev, spi_speed, packets_per_frame, packet_size, head_bytes, reboot_max_cnt));
 
       // Get the location of our camera config yaml
-      std::string camera_info_url, camera_model;
+      std::string camera_info_url, camera_model, camera_frame;
       pnh.param("camera_info_url", camera_info_url, std::string(""));
       pnh.param("camera", camera_model, std::string("camera"));
+      pnh.param("camera_frame", camera_frame, std::string("camera"));
 
       // Start the camera info manager and attempt to load any configurations
       cinfo_.reset(new camera_info_manager::CameraInfoManager(nh, camera_model, camera_info_url));
       ci_.reset(new sensor_msgs::CameraInfo(cinfo_->getCameraInfo()));
-      ci_->header.frame_id = camera_model + std::string("_optical");
+      ci_->header.frame_id = camera_frame + std::string("_optical");
 
       // Publish topics using ImageTransport through camera_info_manager (gives cool things like compression)
       it_.reset(new image_transport::ImageTransport(nh));
