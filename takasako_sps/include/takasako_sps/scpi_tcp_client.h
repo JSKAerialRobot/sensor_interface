@@ -8,6 +8,7 @@
 #include <sstream>
 #include <takasako_sps/PowerInfo.h>
 #include <std_msgs/Empty.h>
+#include <std_msgs/Bool.h>
 
 class TakasokoSps
 {
@@ -19,9 +20,10 @@ private:
   ros::NodeHandle nh_;
   ros::NodeHandle nhp_;
   ros::Publisher  power_info_pub_;
-  ros::Subscriber  power_on_sub_, power_off_sub_;
+  ros::Subscriber  power_on_sub_, power_off_sub_, check_sub_;
 
   bool power_flag_;
+  bool check_flag_ = false;
   ros::Timer timer_;
   double tm_loop_rate_;
 
@@ -35,6 +37,7 @@ private:
 
   void powerOnCallback(const std_msgs::EmptyConstPtr &msg);
   void powerOffCallback(const std_msgs::EmptyConstPtr &msg);
+  void checkVolCallback(const std_msgs::BoolConstPtr &msg);
   void powerInfoFunction(const ros::TimerEvent & e); 
 
 };
